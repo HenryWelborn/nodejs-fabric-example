@@ -1,0 +1,102 @@
+<!--
+Copyright IBM, 2019 All Rights Reserved.
+SPDX-License-Identifier: Apache-2.0
+-->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Fabric Sample with Node Express Server</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+      .editBtn {
+        display:none;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+    <h1>Users</h1>
+    <ul id="usersList"></ul>
+    <hr>
+    <form class="form-inline" id="newuser">
+    <input type="text" name="user" placeholder="User Name">
+    <input type="password" name="pass" placeholder="Password">
+    <input type="text" name="id" placeholder="id">
+    <button type="submit" class="saveBtn btn-primary">Add</button>
+    <button type="submit" class="editBtn btn-primary">Save</button>
+    </form>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        buildPage();
+        $('input[name="id"]').hide();
+        $('#usersList').on('click','.remove',function(){
+          var id = $(this).parent().data('user').id;
+          $.ajax({
+            url:'/users/'+id,
+            type:'DELETE',
+            success:function(rep){
+              console.log(rep);
+                buildPage();
+            }
+          })
+        })
+        $('#usersList').on('click','.edit',function(){
+          var user = $(this).parent().data('user');
+          $('input[name="id"]').val(user.id)
+          $('input[name="user"]').val(user.user);
+          $('input[name="pass"]').val(user.pass);
+          $('input[name="id"]').show();
+          $('.saveBtn').hide();
+          $('.editBtn').show();
+        })
+
+        $('.editBtn').click(function () {
+          var id = $('input[name="id"]').val();
+          $.ajax({
+            url:'/users/'+id,
+            type:'PUT',
+            data:$('#newuser').serialize(),
+            success:function(rep){
+              console.log(rep);
+                buildPage();
+            }
+          })
+          $('input[name="id"]').hide();
+          $('.saveBtn').show();
+          $('.editBtn').hide();
+          $('input[name="id"]').val('')
+        })
+
+        $('.saveBtn').click(function(){
+          var user = $('input[name="user"]').val();
+          var pass = $('input[name="pass"]').val();
+          $.post('/users',$('#newuser').serialize()).done(function(data){console.log(data);
+          buildPage();
+          })
+        })
+      })
+
+      function buildPage() {
+        $('#usersList').html(' ');
+        $.getJSON('/users',function(data){
+          $.each(data.users,function(i,value){
+            var hLink = '<a href="/users/'+value.id+'" target="_blank">'+value.user+'</a>'
+            var listNew = $('<li>'+hLink+' <span class="remove"><i class="glyphicon glyphicon-remove"></i></span><span class="edit"><i class="glyphicon glyphicon-pencil"></i></span></li>')
+            listNew.data('user',value);
+            $('#usersList').append(listNew);
+            console.log(value);
+          })
+        })
+      }
+    </script>
+    </div>
+  </body>
+</html>
