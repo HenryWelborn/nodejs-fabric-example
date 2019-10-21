@@ -1,3 +1,10 @@
+/*
+Copyright IBM, 2019 All Rights Reserved.
+
+SPDX-License-Identifier: Apache-2.0
+*/
+
+
 var express = require('express')
 var app = express()
 
