@@ -11,9 +11,9 @@ SPDX-License-Identifier: Apache-2.0
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Fabric Sample with Node Express Server</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <style>
       .editBtn {
         display:none;
@@ -23,24 +23,27 @@ SPDX-License-Identifier: Apache-2.0
   <body>
 
     <div class="container">
-    <h1>Users</h1>
-    <ul id="usersList"></ul>
+    <h1>cars</h1>
+    <div class="row">
+    <ul id="carsList" class="list-group"></ul>
+    </div>
     <hr>
-    <form class="form-inline" id="newuser">
-    <input type="text" name="user" placeholder="User Name">
-    <input type="password" name="pass" placeholder="Password">
-    <input type="text" name="id" placeholder="id">
+    <form class="form-inline" id="newcar">
+    <input type="text" name="color" placeholder="Color">
+    <input type="text" name="make" placeholder="Make">
+    <input type="text" name="model" placeholder="Model">
+    <input type="text" name="owner" placeholder="Owner">
+    <input type="hidden" name="id" placeholder="id">
     <button type="submit" class="saveBtn btn-primary">Add</button>
     <button type="submit" class="editBtn btn-primary">Save</button>
     </form>
     <script type="text/javascript">
       $(document).ready(function(){
         buildPage();
-        $('input[name="id"]').hide();
-        $('#usersList').on('click','.remove',function(){
-          var id = $(this).parent().data('user').id;
+        $('#carsList').on('click','.remove',function(){
+          var id = $(this).parent().data('car').id;
           $.ajax({
-            url:'/users/'+id,
+            url:'/cars/'+id,
             type:'DELETE',
             success:function(rep){
               console.log(rep);
@@ -48,12 +51,13 @@ SPDX-License-Identifier: Apache-2.0
             }
           })
         })
-        $('#usersList').on('click','.edit',function(){
-          var user = $(this).parent().data('user');
-          $('input[name="id"]').val(user.id)
-          $('input[name="user"]').val(user.user);
-          $('input[name="pass"]').val(user.pass);
-          $('input[name="id"]').show();
+        $('#carsList').on('click','.edit',function(){
+          var car = $(this).parent().data('car');
+          $('input[name="id"]').val(car.id)
+          $('input[name="color"]').val(car.color);
+          $('input[name="make"]').val(car.make);
+          $('input[name="model"]').val(car.model);
+          $('input[name="owner"]').val(car.owner);
           $('.saveBtn').hide();
           $('.editBtn').show();
         })
@@ -61,38 +65,38 @@ SPDX-License-Identifier: Apache-2.0
         $('.editBtn').click(function () {
           var id = $('input[name="id"]').val();
           $.ajax({
-            url:'/users/'+id,
+            url:'/cars/'+id,
             type:'PUT',
-            data:$('#newuser').serialize(),
+            data:$('#newcar').serialize(),
             success:function(rep){
               console.log(rep);
                 buildPage();
             }
           })
-          $('input[name="id"]').hide();
           $('.saveBtn').show();
           $('.editBtn').hide();
           $('input[name="id"]').val('')
         })
 
         $('.saveBtn').click(function(){
-          var user = $('input[name="user"]').val();
-          var pass = $('input[name="pass"]').val();
-          $.post('/users',$('#newuser').serialize()).done(function(data){console.log(data);
+          $.post('/cars',$('#newcar').serialize()).done(function(data){console.log(data);
           buildPage();
           })
         })
       })
 
       function buildPage() {
-        $('#usersList').html(' ');
-        $.getJSON('/users',function(data){
-          $.each(data.users,function(i,value){
-            var hLink = '<a href="/users/'+value.id+'" target="_blank">'+value.user+'</a>'
-            var listNew = $('<li>'+hLink+' <span class="remove"><i class="glyphicon glyphicon-remove"></i></span><span class="edit"><i class="glyphicon glyphicon-pencil"></i></span></li>')
-            listNew.data('user',value);
-            $('#usersList').append(listNew);
-            console.log(value);
+        $('#carsList').html(' ');
+        $.getJSON('/cars',function(data){
+          $.each(data.cars,function(i,car){
+            var dataValue = car.color + ' ' + car.make + ' ' + car.model + ' ' + car.owner
+            var viewLink = '<a href="/cars/'+car.id+'" target="_blank" class="btn btn-primary btn-sm ml-1 mr-1">View</a>'
+            var editLink = '<span class="edit btn btn-primary btn-sm mr-1">Edit</span>'
+            var deleteLink = '<span class="remove btn btn-danger btn-sm mr-1">Delete</span>'
+            var listNew = $('<li class="list-group-item">'+dataValue+viewLink+editLink+deleteLink+'</li>')
+            listNew.data('car',car);
+            $('#carsList').append(listNew);
+            console.log(car);
           })
         })
       }

@@ -13,29 +13,29 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname+'/www'))
 
-app.get('/users', function (request, response) {
-  //see all users
+app.get('/cars', function (request, response) {
+  //see all cars
   response.json(db.findAll());
 })
 
-app.post('/users', function (request, response) {
+app.post('/cars', function (request, response) {
   let id = db.saveItem(JSON.parse(JSON.stringify(request.body)));
   response.json(db.findItem(id));
 })
 
-app.get('/users/:id',function (request, response) {
-  // get user info by id
+app.get('/cars/:id',function (request, response) {
+  // get car info by id
   response.send(db.findItem(request.params.id));
 })
 
-app.put('/users/:id', function (request, response) {
-  // update user
+app.put('/cars/:id', function (request, response) {
+  // update car
   let id = db.updateItem(JSON.parse(JSON.stringify(request.body)),request.params.id);
   response.json(db.findItem(id));
 })
 
-app.delete('/users/:id', function (request, response) {
-  // delete user
+app.delete('/cars/:id', function (request, response) {
+  // delete car
   db.deleteItem(request.params.id);
   response.write('deleted '+ request.params.id);
   response.send();
