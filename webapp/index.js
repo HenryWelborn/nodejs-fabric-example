@@ -7,7 +7,7 @@ SPDX-License-Identifier: Apache-2.0
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-const db = require('./helper/datashim.js')
+const db = require('./helper/in_memory_database.js')
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());

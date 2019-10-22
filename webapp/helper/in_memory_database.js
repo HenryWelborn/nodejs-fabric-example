@@ -14,61 +14,61 @@ const data = {
     "id": 1571682634947
   },
             {
-                color: 'green',
-                make: 'Hyundai',
-                model: 'Tucson',
-                owner: 'Jin Soo',
+                "color": 'green',
+                "make": 'Hyundai',
+                "model": 'Tucson',
+                "owner": 'Jin Soo',
                 "id": 1571682634948
             },
             {
-                color: 'yellow',
-                make: 'Volkswagen',
-                model: 'Passat',
-                owner: 'Max',
+                "color": 'yellow',
+                "make": 'Volkswagen',
+                "model": 'Passat',
+                "owner": 'Max',
                 "id": 1571682634949
             },
             {
-                color: 'black',
-                make: 'Tesla',
-                model: 'S',
-                owner: 'Adriana',
+                "color": 'black',
+                "make": 'Tesla',
+                "model": 'S',
+                "owner": 'Adriana',
                 "id": 1571682634950
             },
             {
-                color: 'purple',
-                make: 'Peugeot',
-                model: '205',
-                owner: 'Michel',
+                "color": 'purple',
+                "make": 'Peugeot',
+                "model": '205',
+                "owner": 'Michel',
                 "id": 1571682634951
             },
             {
-                color: 'white',
-                make: 'Chery',
-                model: 'S22L',
-                owner: 'Aarav',
+                "color": 'white',
+                "make": 'Chery',
+                "model": 'S22L',
+                "owner": 'Aarav',
                 "id": 1571682634952
             },
             {
-                color: 'violet',
-                make: 'Fiat',
-                model: 'Punto',
-                owner: 'Pari',
+                "color": 'violet',
+                "make": 'Fiat',
+                "model": 'Punto',
+                "owner": 'Pari',
                 "id": 1571682634953
             },
             {
-                color: 'indigo',
-                make: 'Tata',
-                model: 'Nano',
-                owner: 'Valeria',
+                "color": 'indigo',
+                "make": 'Tata',
+                "model": 'Nano',
+                "owner": 'Valeria',
                 "id": 1571682634954
             },
             {
-                color: 'brown',
-                make: 'Holden',
-                model: 'Barina',
-                owner: 'Shotaro',
+                "color": 'brown',
+                "make": 'Holden',
+                "model": 'Barina',
+                "owner": 'Shotaro',
                 "id": 1571682634955
-}
+              }
 ]
 }
 
