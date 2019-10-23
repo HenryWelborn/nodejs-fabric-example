@@ -31,6 +31,7 @@ In this example, the `index.js` file uses the Express Node.js package to create 
 
 A simplified [Data Access Layer](https://en.wikipedia.org/wiki/Data_access_layer) helper class `in_memory_database.js` has been written, initially backed by a simple in-memory JSON object array. This allows for the example to expand to implement a Hyperledger Fabric DAL in the future. 
 
+All of the browser rendering code was written directly into the `index.html` file. 
 
 ### Prequisites
 
@@ -44,6 +45,8 @@ During the development phase its best to have the `nodemon` tool available.
 nvm use lts/dubnium
 npm install -g nodemon
 ```
+
+The [Postman](https://www.getpostman.com/) application is a great tool for exercising the REST APIs directly. 
 
 ### Up and running
 
