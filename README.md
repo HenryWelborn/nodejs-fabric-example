@@ -83,15 +83,3 @@ The IBM Blockchain Platform VS Code extension is a easy way to setup your chainc
 7. Under the Fabric Gateways -> Channels -> mychannel -> fabcar@1.0.0 you will see the methods from your chaincode. Make sure you call `initLedger` if you did not do so during step 6.
 8. Run `queryAllCars` to see the current list of assets in the world state database.
 
-## Repository information
-
-This repository contains some example best practices for open source repositories, including [LICENSE](LICENSE) file, boilerplate [README.md](README.md),  [CONTRIBUTING.md](CONTRIBUTING.md), and [MAINTAINERS.md](MAINTAINERS.md) files. These may be copied into a new or existing project to make it easier for developers not on a project team to collaborate.
-
-**NOTE: While this boilerplate project uses the Apache 2.0 license, when
-establishing a new repo using this template, please use the
-license that was approved for your project.**
-
-**NOTE: This repository has been configured with the [DCO bot](https://github.com/probot/dco).
-When you set up a new repository that uses the Apache license, you should
-use the DCO to manage contributions. The DCO bot will help enforce that.
-Please contact one of the IBM GH Org stewards.**
