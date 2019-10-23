@@ -17,7 +17,7 @@ Taking a sample web application layout:
 
 JavaScript can run in both the Browser and can execute the backend web Application. JavaScript in the browser handles how to render data and retrieve data from the application.
 
-[CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) is an acronym for interacting with persistent data (create, read, update, delete). A popular technique to implement CRUD operations as [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) APIs. The [HTTP verbs](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods) map to each operator. 
+[CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) is an acronym for interacting with persistent data (create, read, update, delete). A popular technique to implement CRUD operations as [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) APIs. The [HTTP verbs](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods) map to each operation. 
 
 | Operation | HTTP         |
 |-----------|--------------|
